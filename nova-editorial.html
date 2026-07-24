@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nova Sterling</title>
+<meta name="description" content="PLACEHOLDER — one line about Nova Sterling, used for Google and link previews.">
+
+<!-- ==========================================================================
+     NOVA STERLING — EDITORIAL PROFILE  (light / serif)
+     An alternative to nova.html, which is the dark version.
+
+     TO EDIT: open in Notepad and search for  PLACEHOLDER
+     PHOTO:   images/nova.jpg          GALLERY: images/work-01.jpg … work-06.jpg
+     ========================================================================== -->
+
+<style>
+  :root{
+    --paper:#000000;      /* black background */
+    --paper-2:#121212;    /* slightly lifted black for cards */
+    --ink:#ffffff;        /* white text */
+    --muted:#a3a3a3;      /* soft grey for secondary text */
+    --accent:#d0aa50;     /* gold — text, numbers, prices */
+    --gold:#c8a951;       /* gold — lines, borders, hovers */
+    --line:#282828;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  .serif{font-family:Georgia,'Times New Roman',serif;}
+
+  .wrap{max-width:1080px;margin:0 auto;padding:0 6vw;}
+
+  /* ---------- masthead ---------- */
+  .masthead{
+    display:flex;justify-content:space-between;align-items:baseline;
+    padding:28px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .mark{
+    font-family:"Segoe UI Variable Display","Segoe UI",Inter,system-ui,
+                -apple-system,"Helvetica Neue",Arial,sans-serif;
+    font-size:0.95rem;font-weight:600;
+    letter-spacing:0.2em;text-transform:uppercase;
+    color:var(--accent);
+  }
+  .masthead .meta{font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);}
+
+  /* ---------- hero ---------- */
+  .hero{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:56px;
+    align-items:end;
+    padding:76px 0 88px;
+    border-bottom:1px solid var(--line);
+  }
+  .eyebrow{
+    font-size:0.7rem;letter-spacing:0.25em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:22px;
+  }
+  /* the name — modern sans, oversized, tight tracking */
+  .hero h1{
+    font-family:"Segoe UI Variable Display","Segoe UI",Inter,system-ui,
+                -apple-system,"Helvetica Neue",Arial,sans-serif;
+    font-size:clamp(3.2rem,9vw,6.6rem);
+    font-weight:200;
+    line-height:0.9;
+    letter-spacing:-0.035em;
+    text-transform:uppercase;
+    color:var(--accent);            /* the name, in gold */
+  }
+  .hero h1 em{
+    display:block;
+    font-style:normal;
+    font-weight:700;
+    letter-spacing:-0.045em;
+  }
+  .hero .intro{
+    margin-top:26px;
+    max-width:44ch;
+    color:var(--muted);
+    font-size:1.02rem;
+  }
+  .rule{width:56px;height:2px;background:var(--gold);margin:30px 0;}
+
+  .portrait{
+    aspect-ratio:3/4;
+    background:var(--paper-2);
+    border:1px solid var(--line);
+    overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--muted);font-size:0.72rem;letter-spacing:0.12em;text-align:center;padding:14px;
+  }
+  .portrait img{width:100%;height:100%;object-fit:cover;display:block;}
+
+  /* ---------- tabs: numbered index ---------- */
+  .index{padding:76px 0 0;}
+  .tabs{
+    display:flex;flex-wrap:wrap;gap:0 44px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:2px;
+    margin-bottom:52px;
+  }
+  .tab{
+    background:none;border:0;
+    font-family:Georgia,serif;
+    font-size:1.35rem;
+    color:var(--muted);
+    padding:0 0 16px;
+    margin-bottom:-2px;
+    border-bottom:2px solid transparent;
+    cursor:pointer;
+    transition:color .25s ease,border-color .25s ease;
+    display:flex;align-items:baseline;gap:10px;
+  }
+  .tab .num{
+    font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:0.62rem;letter-spacing:0.14em;
+    color:var(--accent);
+  }
+  .tab:hover{color:var(--ink);}
+  .tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--gold);}
+  .tab:focus-visible{outline:1px solid var(--accent);outline-offset:6px;}
+
+  .panel[hidden]{display:none;}
+  .panel{animation:rise .4s ease;}
+  @keyframes rise{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:none;}}
+
+  .lead{
+    font-family:Georgia,serif;
+    font-size:clamp(1.35rem,2.4vw,1.85rem);
+    line-height:1.4;
+    font-weight:400;
+    max-width:24ch;
+  }
+  .cols{
+    display:grid;grid-template-columns:1fr 1fr;gap:56px;
+    align-items:start;
+  }
+  .cols p{color:var(--muted);}
+  .cols p + p{margin-top:18px;}
+
+  /* services */
+  .service{
+    display:grid;grid-template-columns:auto 1fr auto;gap:28px;
+    align-items:baseline;
+    padding:30px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .service:first-of-type{border-top:1px solid var(--line);}
+  .service .n{font-size:0.66rem;letter-spacing:0.16em;color:var(--accent);}
+  .service h3{font-family:Georgia,serif;font-size:1.3rem;font-weight:400;margin-bottom:6px;}
+  .service p{font-size:0.92rem;color:var(--muted);max-width:52ch;}
+  .service .price{font-family:Georgia,serif;font-size:1.15rem;color:var(--accent);white-space:nowrap;}
+  .service .price small{
+    display:block;font-family:'Helvetica Neue',Arial,sans-serif;
+    font-size:0.64rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-top:5px;
+  }
+
+  /* link tree */
+  .links{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .link{
+    display:flex;align-items:center;gap:16px;
+    padding:20px 22px;
+    background:var(--paper-2);
+    border:1px solid var(--line);
+    transition:background .25s ease,border-color .25s ease,transform .25s ease;
+  }
+  .link:hover{background:#1c1c1c;border-color:var(--gold);transform:translateY(-3px);}
+  .link:focus-visible{outline:1px solid var(--accent);outline-offset:4px;}
+  .link .ico{flex:none;width:19px;height:19px;color:var(--accent);}
+  .link .ico svg{width:100%;height:100%;fill:currentColor;display:block;}
+  .link .label{font-size:0.82rem;letter-spacing:0.14em;text-transform:uppercase;}
+  .link .sub{
+    display:block;margin-top:3px;
+    font-size:0.74rem;letter-spacing:0.02em;text-transform:none;color:var(--muted);
+  }
+  .link .arrow{margin-left:auto;color:var(--muted);}
+
+  /* contact */
+  .row{
+    display:grid;grid-template-columns:150px 1fr;gap:24px;
+    padding:22px 0;
+    border-bottom:1px solid var(--line);
+    align-items:baseline;
+  }
+  .row:first-of-type{border-top:1px solid var(--line);}
+  .row .key{font-size:0.66rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);}
+  .row .val{font-family:Georgia,serif;font-size:1.1rem;word-break:break-word;}
+  .row a.val{border-bottom:1px solid var(--gold);padding-bottom:2px;}
+  .row a.val:hover{color:var(--accent);}
+
+  .cta{
+    display:inline-block;margin-top:40px;
+    padding:15px 36px;
+    background:var(--ink);color:var(--paper);
+    font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;
+    transition:background .25s ease;
+  }
+  .cta:hover{background:var(--gold);color:var(--ink);}
+
+  /* gallery */
+  .gallery{padding:88px 0 0;}
+  .gallery-head{
+    display:flex;justify-content:space-between;align-items:baseline;
+    margin-bottom:26px;
+  }
+  .gallery-head h2{font-family:Georgia,serif;font-size:1.9rem;font-weight:400;}
+  .gallery-head span{font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .cell{
+    aspect-ratio:3/4;
+    background:var(--paper-2);
+    border:1px solid var(--line);
+    overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--muted);font-size:0.7rem;letter-spacing:0.1em;text-align:center;padding:10px;
+    transition:transform .3s ease,border-color .3s ease;
+  }
+  .cell:hover{transform:translateY(-5px);border-color:var(--gold);}
+  .cell img{width:100%;height:100%;object-fit:cover;display:block;}
+
+  footer{
+    margin-top:88px;padding:30px 0;
+    border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;
+    font-size:0.68rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);
+  }
+
+  @media(max-width:860px){
+    .hero{grid-template-columns:1fr;gap:44px;padding:56px 0 64px;}
+    .portrait{max-width:360px;}
+    .cols{grid-template-columns:1fr;gap:32px;}
+    .links{grid-template-columns:1fr;}
+    .grid{grid-template-columns:repeat(2,1fr);}
+    .service{grid-template-columns:1fr;gap:10px;}
+    .row{grid-template-columns:1fr;gap:6px;}
+    .tabs{gap:0 26px;}
+    .tab{font-size:1.1rem;}
+    footer{flex-direction:column;gap:8px;}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="mark serif">Nova Sterling</div>
+    <!-- PLACEHOLDER — discipline / location line -->
+    <div class="meta">Portfolio &mdash; PLACEHOLDER</div>
+  </div>
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Model &middot; Creator &middot; Brand Partner</div>
+      <h1>Nova<em>Sterling</em></h1>
+      <div class="rule"></div>
+      <p class="intro">Nova Sterling is a modern lifestyle brand and creative
+        partner &mdash; working with businesses on content, campaigns, and
+        audience growth. Available worldwide for bookings and collaborations.</p>
+    </div>
+
+    <!-- PORTRAIT: save the photo as images/nova.jpg in this folder -->
+    <div class="portrait">
+      <img src="images/nova.jpg" alt="Portrait of Nova Sterling"
+           onerror="this.remove();this.parentNode.textContent='images/nova.jpg';">
+    </div>
+  </section>
+
+  <!-- ================= TABBED INDEX ================= -->
+  <section class="index" id="index">
+    <div class="tabs" role="tablist" aria-label="Profile sections">
+      <button class="tab" role="tab" id="tab-about"    aria-controls="panel-about"    aria-selected="true"><span class="num">01</span>About</button>
+      <button class="tab" role="tab" id="tab-services" aria-controls="panel-services" aria-selected="false" tabindex="-1"><span class="num">02</span>Services</button>
+      <button class="tab" role="tab" id="tab-links"    aria-controls="panel-links"    aria-selected="false" tabindex="-1"><span class="num">03</span>Links</button>
+      <button class="tab" role="tab" id="tab-contact"  aria-controls="panel-contact"  aria-selected="false" tabindex="-1"><span class="num">04</span>Contact</button>
+    </div>
+
+    <!-- ---------- 01 ABOUT ---------- -->
+    <div class="panel" id="panel-about" role="tabpanel" aria-labelledby="tab-about">
+      <div class="cols">
+        <p class="lead serif">A new kind of model for a new kind of business.</p>
+        <div>
+          <p>Nova Sterling is a modern brand built for the way business works
+             now &mdash; visual, fast-moving, and always online. She brings a
+             consistent, polished presence to every campaign, product, and
+             platform she appears on.</p>
+          <p>Working with Nova is simple: she shows up on-brand, on-message, and
+             on-schedule, every time. From social content to full campaigns,
+             she's ready whenever your business is &mdash; no delays, no drama,
+             just consistent creative that moves your brand forward.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ---------- 02 SERVICES ---------- -->
+    <div class="panel" id="panel-services" role="tabpanel" aria-labelledby="tab-services" hidden>
+      <!-- PLACEHOLDER — copy a whole .service block to add another -->
+      <div class="service">
+        <span class="n">01</span>
+        <div>
+          <h3>Service One</h3>
+          <p>PLACEHOLDER — one sentence on what's included and who it suits.</p>
+        </div>
+        <div class="price">$000<small>per session</small></div>
+      </div>
+
+      <div class="service">
+        <span class="n">02</span>
+        <div>
+          <h3>Service Two</h3>
+          <p>PLACEHOLDER — one sentence on what's included and who it suits.</p>
+        </div>
+        <div class="price">$000<small>per project</small></div>
+      </div>
+
+      <div class="service">
+        <span class="n">03</span>
+        <div>
+          <h3>Service Three</h3>
+          <p>PLACEHOLDER — one sentence on what's included and who it suits.</p>
+        </div>
+        <div class="price">From $000<small>custom quote</small></div>
+      </div>
+
+      <!-- Opens a booking enquiry email. Swap for a booking-form link if you get one. -->
+      <a class="cta" href="mailto:novasterling2026@gmail.com?subject=Booking%20enquiry">Enquire about booking</a>
+    </div>
+
+    <!-- ---------- 03 LINKS ---------- -->
+    <div class="panel" id="panel-links" role="tabpanel" aria-labelledby="tab-links" hidden>
+      <!-- PLACEHOLDER — replace every href="#" with a real URL.
+           Delete rows that don't apply; copy a row to add more. -->
+      <div class="links">
+
+        <a class="link" href="https://www.instagram.com/novasterlingggx/" target="_blank" rel="noopener">
+          <span class="ico"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.12 1.39C1.35 2.68.93 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.39 2.12.66.67 1.33 1.09 2.12 1.39.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.3 1.46-.72 2.12-1.39.67-.66 1.09-1.33 1.39-2.12.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.3-.79-.72-1.46-1.39-2.12C21.32 1.35 20.65.93 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32A6.16 6.16 0 0012 5.84zM12 16a4 4 0 110-8 4 4 0 010 8zm7.85-10.4a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg></span>
+          <span class="label">Instagram<span class="sub">@novasterlingggx</span></span>
+          <span class="arrow">&rarr;</span>
+        </a>
+
+        <a class="link" href="https://www.facebook.com/profile.php?id=61592371702816" target="_blank" rel="noopener">
+          <span class="ico"><svg viewBox="0 0 24 24"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.09 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.96h-1.5c-1.49 0-1.95.93-1.95 1.87v2.25h3.32l-.53 3.49h-2.79V24C19.61 23.09 24 18.1 24 12.07z"/></svg></span>
+          <span class="label">Facebook<span class="sub">Nova Sterling</span></span>
+          <span class="arrow">&rarr;</span>
+        </a>
+
+        <a class="link" href="https://www.tiktok.com/@novasterlinggg" target="_blank" rel="noopener">
+          <span class="ico"><svg viewBox="0 0 24 24"><path d="M19.6 6.2a5.1 5.1 0 01-3.1-1v7.9a6.3 6.3 0 11-5.4-6.2v2.7a3.6 3.6 0 102.5 3.4V0h2.9a5.1 5.1 0 003.1 4.7v1.5z"/></svg></span>
+          <span class="label">TikTok<span class="sub">@novasterlinggg</span></span>
+          <span class="arrow">&rarr;</span>
+        </a>
+
+        <a class="link" href="https://x.com/NovaSterlinggg" target="_blank" rel="noopener">
+          <span class="ico"><svg viewBox="0 0 24 24"><path d="M18.24 2.25h3.31l-7.23 8.26 8.5 11.24H16.2l-5.21-6.82-5.96 6.82H1.72l7.73-8.84L1.3 2.25h6.98l4.71 6.23 5.25-6.23zm-1.16 17.52h1.83L7.08 4.13H5.11l11.97 15.64z"/></svg></span>
+          <span class="label">X<span class="sub">@NovaSterlinggg</span></span>
+          <span class="arrow">&rarr;</span>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- ---------- 04 CONTACT ---------- -->
+    <div class="panel" id="panel-contact" role="tabpanel" aria-labelledby="tab-contact" hidden>
+      <!-- Nova's email — appears in both the link and the visible text -->
+      <div class="row">
+        <span class="key">Email</span>
+        <a class="val" href="mailto:novasterling2026@gmail.com">novasterling2026@gmail.com</a>
+      </div>
+
+      <!-- PLACEHOLDER — phone. Delete this row to leave it off. -->
+      <div class="row">
+        <span class="key">Phone</span>
+        <a class="val" href="tel:+10000000000">+1 (000) 000-0000</a>
+      </div>
+
+      <!-- PLACEHOLDER — agency or management, or delete -->
+      <div class="row">
+        <span class="key">Representation</span>
+        <span class="val">Agency name &middot; PLACEHOLDER</span>
+      </div>
+
+      <!-- PLACEHOLDER — city / region, or "Remote — worldwide" -->
+      <div class="row">
+        <span class="key">Based in</span>
+        <span class="val">City, Country &middot; PLACEHOLDER</span>
+      </div>
+
+      <!-- PLACEHOLDER — availability or response time -->
+      <div class="row">
+        <span class="key">Availability</span>
+        <span class="val">Replies within 24 hours &middot; PLACEHOLDER</span>
+      </div>
+
+      <!-- Same email as above -->
+      <a class="cta" href="mailto:novasterling2026@gmail.com?subject=Hello%20Nova">Send an email</a>
+    </div>
+  </section>
+
+  <!-- ================= GALLERY ================= -->
+  <section class="gallery" id="work">
+    <div class="gallery-head">
+      <h2 class="serif">Selected Work</h2>
+      <span>2026</span>
+    </div>
+
+    <!-- Save images as images/work-01.jpg through work-06.jpg.
+         Until then each cell shows the filename it's waiting for. -->
+    <div class="grid">
+      <div class="cell"><img src="images/work-01.jpg" alt="" onerror="this.remove();this.parentNode.textContent='images/work-01.jpg';"></div>
+      <div class="cell"><img src="images/work-02.jpg" alt="" onerror="this.remove();this.parentNode.textContent='images/work-02.jpg';"></div>
+      <div class="cell"><img src="images/work-03.jpg" alt="" onerror="this.remove();this.parentNode.textContent='images/work-03.jpg';"></div>
+      <div class="cell"><img src="images/work-04.jpg" alt="" onerror="this.remove();this.parentNode.textContent='images/work-04.jpg';"></div>
+      <div class="cell"><img src="images/work-05.jpg" alt="" onerror="this.remove();this.parentNode.textContent='images/work-05.jpg';"></div>
+      <div class="cell"><img src="images/work-06.jpg" alt="" onerror="this.remove();this.parentNode.textContent='images/work-06.jpg';"></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>&copy; <span id="yr"></span> Nova Sterling</span>
+    <span>Built for modern business</span>
+  </footer>
+
+</div>
+
+<script>
+  const tabs = [...document.querySelectorAll('.tab')];
+
+  function select(tab, focus){
+    tabs.forEach(t => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', on);
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+    if (focus) tab.focus();
+    history.replaceState(null, '', '#' + tab.id.replace('tab-', ''));
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => select(tab, false));
+    tab.addEventListener('keydown', e => {
+      const i = tabs.indexOf(tab);
+      if (e.key === 'ArrowRight')      select(tabs[(i + 1) % tabs.length], true);
+      else if (e.key === 'ArrowLeft')  select(tabs[(i - 1 + tabs.length) % tabs.length], true);
+      else if (e.key === 'Home')       select(tabs[0], true);
+      else if (e.key === 'End')        select(tabs[tabs.length - 1], true);
+      else return;
+      e.preventDefault();
+    });
+  });
+
+  const fromHash = document.getElementById('tab-' + location.hash.slice(1));
+  if (fromHash) select(fromHash, false);
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
